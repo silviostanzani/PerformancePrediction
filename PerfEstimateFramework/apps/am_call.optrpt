@@ -1,0 +1,7 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C++ Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 18.0.2.199 Build 20180210
+
+Compiler options: -ltbbmalloc -xHost -qopenmp -O3 -ipo -restrict -fimf-precision=low -fimf-domain-exclusion=31 -fno-alias -qopt-report=5 -DCOMPILER_VERSION="icpc-18.0.2" -o /home/silvio/PerfEstimateFramework/apps/am_call_vp

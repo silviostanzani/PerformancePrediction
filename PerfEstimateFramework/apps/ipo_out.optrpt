@@ -1,0 +1,427 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C++ Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 18.0.2.199 Build 20180210
+
+Compiler options: -ltbbmalloc -xHost -qopenmp -O3 -ipo -restrict -fimf-precision=low -fimf-domain-exclusion=31 -fno-alias -qopt-report=5 -DCOMPILER_VERSION="icpc-18.0.2" -o /home/silvio/PerfEstimateFramework/apps/am_call_vp
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: true
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: true
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: disabled
+  -inline-max-per-compile: disabled
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: main()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (main()) [1/25=4.0%] /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(143,1)
+  -> EXTERN: (149,17) _rdtsc()
+  -> INLINE (MANUAL): (150,17) baw_scalaropt(float, float, float, float, float, float) (isz = 175) (sz = 192)
+    -> EXTERN: (106,20) expf(float)
+    -> EXTERN: (112,45) expf(float)
+    -> EXTERN: (117,17) expf(float)
+    -> INLINE (MANUAL): (119,13) european_call_opt(float, float, float, float, float, float) (isz = 35) (sz = 52)
+      -> EXTERN: (89,17) logf(float)
+      -> EXTERN: (91,28) expf(float)
+      -> INLINE (MANUAL): (91,43) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (71,20) erff(float)
+      -> EXTERN: (91,61) expf(float)
+      -> INLINE (MANUAL): (91,77) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (71,20) erff(float)
+    -> EXTERN: (120,14) logf(float)
+    -> INLINE (MANUAL): (121,18) cnd_opt(float) (isz = 4) (sz = 11)
+      -> EXTERN: (71,20) erff(float)
+    -> INLINE (MANUAL): (123,50) n_opt(float) (isz = 6) (sz = 13)
+      -> EXTERN: (76,34) expf(float)
+    -> INLINE (MANUAL): (127,9) std::fabs(float) (isz = 0) (sz = 7)
+    -> INLINE (MANUAL): (130,16) european_call_opt(float, float, float, float, float, float) (isz = 35) (sz = 52)
+      -> EXTERN: (89,17) logf(float)
+      -> EXTERN: (91,28) expf(float)
+      -> INLINE (MANUAL): (91,43) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (71,20) erff(float)
+      -> EXTERN: (91,61) expf(float)
+      -> INLINE (MANUAL): (91,77) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (71,20) erff(float)
+    -> EXTERN: (135,14) logf(float)
+    -> INLINE (MANUAL): (136,26) cnd_opt(float) (isz = 4) (sz = 11)
+      -> EXTERN: (71,20) erff(float)
+    -> EXTERN: (137,9) powf(float, float)
+  -> EXTERN: (151,15) _rdtsc()
+  -> EXTERN: (152,10) std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, const char *)
+  -> EXTERN: (153,3) std::operator<<<char, std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, std::_Setprecision)
+  -> INLINE (MANUAL): (153,24) std::setprecision(int) (isz = 0) (sz = 6)
+  -> EXTERN: (153,27) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, float)
+  -> EXTERN: (153,34) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &))
+  -> EXTERN: (153,42) std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, const char *)
+  -> EXTERN: (153,69) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, unsigned long long)
+  -> EXTERN: (153,93) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &))
+  -> EXTERN: (155,6) kmp_set_defaults(const char *)
+  -> EXTERN: (156,18) omp_get_max_threads()
+  -> EXTERN: (157,2) omp_set_num_threads(int)
+  -> EXTERN: (163,2) setlocale(int, const char *)
+  -> EXTERN: (164,2) printf(const char *, ...)
+  -> EXTERN: (169,13) omp_get_thread_num()
+  -> EXTERN: (174,31) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (175,32) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (176,31) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (177,33) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (178,32) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (179,32) scalable_aligned_malloc(size_t, size_t)
+  -> EXTERN: (180,31) scalable_aligned_malloc(size_t, size_t)
+  -> INLINE (MANUAL): (191,22) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (66,22) rand_r(unsigned int *)
+  -> INLINE (MANUAL): (192,22) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (66,22) rand_r(unsigned int *)
+  -> INLINE (MANUAL): (193,22) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (66,22) rand_r(unsigned int *)
+  -> INLINE (MANUAL): (194,22) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (66,22) rand_r(unsigned int *)
+  -> INLINE (MANUAL): (195,21) RandFloat(float, float, unsigned int *) (isz = 6) (sz = 17)
+    -> EXTERN: (66,22) rand_r(unsigned int *)
+  -> INLINE: (200,10) second() (isz = 8) (sz = 13)
+    -> EXTERN: (60,5) gettimeofday(timeval *, timezone *)
+  -> INLINE (MANUAL): (217,21) baw_scalaropt(float, float, float, float, float, float) (isz = 175) (sz = 192)
+    -> EXTERN: (106,20) expf(float)
+    -> EXTERN: (112,45) expf(float)
+    -> EXTERN: (117,17) expf(float)
+    -> INLINE (MANUAL): (119,13) european_call_opt(float, float, float, float, float, float) (isz = 35) (sz = 52)
+      -> EXTERN: (89,17) logf(float)
+      -> EXTERN: (91,28) expf(float)
+      -> INLINE (MANUAL): (91,43) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (71,20) erff(float)
+      -> EXTERN: (91,61) expf(float)
+      -> INLINE (MANUAL): (91,77) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (71,20) erff(float)
+    -> EXTERN: (120,14) logf(float)
+    -> INLINE (MANUAL): (121,18) cnd_opt(float) (isz = 4) (sz = 11)
+      -> EXTERN: (71,20) erff(float)
+    -> INLINE (MANUAL): (123,50) n_opt(float) (isz = 6) (sz = 13)
+      -> EXTERN: (76,34) expf(float)
+    -> INLINE (MANUAL): (127,9) std::fabs(float) (isz = 0) (sz = 7)
+    -> INLINE (MANUAL): (130,16) european_call_opt(float, float, float, float, float, float) (isz = 35) (sz = 52)
+      -> EXTERN: (89,17) logf(float)
+      -> EXTERN: (91,28) expf(float)
+      -> INLINE (MANUAL): (91,43) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (71,20) erff(float)
+      -> EXTERN: (91,61) expf(float)
+      -> INLINE (MANUAL): (91,77) cnd_opt(float) (isz = 4) (sz = 11)
+        -> EXTERN: (71,20) erff(float)
+    -> EXTERN: (135,14) logf(float)
+    -> INLINE (MANUAL): (136,26) cnd_opt(float) (isz = 4) (sz = 11)
+      -> EXTERN: (71,20) erff(float)
+    -> EXTERN: (137,9) powf(float, float)
+  -> INLINE: (224,11) second() (isz = 8) (sz = 13)
+    -> EXTERN: (60,5) gettimeofday(timeval *, timezone *)
+  -> EXTERN: (225,10) printf(const char *, ...)
+  -> EXTERN: (226,10) printf(const char *, ...)
+  -> EXTERN: (228,2) scalable_aligned_free(void *)
+  -> EXTERN: (229,2) scalable_aligned_free(void *)
+  -> EXTERN: (230,2) scalable_aligned_free(void *)
+  -> EXTERN: (231,2) scalable_aligned_free(void *)
+  -> EXTERN: (232,2) scalable_aligned_free(void *)
+  -> EXTERN: (233,2) scalable_aligned_free(void *)
+  -> EXTERN: (234,2) scalable_aligned_free(void *)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(198,1)
+remark #16207: OpenMP multithreaded code generation for BARRIER was successful
+OpenMP Construct at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(199,1)
+remark #16205: OpenMP multithreaded code generation for MASTER was successful
+OpenMP Construct at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(221,1)
+remark #16207: OpenMP multithreaded code generation for BARRIER was successful
+OpenMP Construct at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(222,1)
+remark #16205: OpenMP multithreaded code generation for MASTER was successful
+OpenMP Construct at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(166,1)
+remark #16201: OpenMP DEFINED REGION WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(91,36) inlined into /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(150,17)
+<Peeled>
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed ANTI dependence between Si (89:17) and Si (124:2)
+   remark #15346: vector dependence: assumed FLOW dependence between Si (124:2) and Si (89:17)
+   remark #15346: vector dependence: assumed FLOW dependence between Si (124:2) and Si (89:17)
+   remark #15346: vector dependence: assumed ANTI dependence between Si (89:17) and Si (124:2)
+LOOP END
+
+LOOP BEGIN at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(183,1)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(188,2)
+      remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(66,22) ]
+      remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(66,22) ]
+      remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(66,22) ]
+      remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(66,22) ]
+      remark #15382: vectorization support: call to function rand_r(unsigned int *) cannot be vectorized   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(66,22) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   LOOP END
+
+   LOOP BEGIN at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(208,2)
+      remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+      remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation : ( 1 2 ) --> ( 2 1 ) 
+      remark #15388: vectorization support: reference OptionYears[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(211,13) ]
+      remark #15388: vectorization support: reference StockPrice[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(212,13) ]
+      remark #15388: vectorization support: reference OptionStrike[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(213,13) ]
+      remark #15388: vectorization support: reference CostofCarry[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(214,13) ]
+      remark #15388: vectorization support: reference Volatility[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(215,13) ]
+      remark #15388: vectorization support: reference CallResult[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(217,3) ]
+      remark #15412: vectorization support: streaming store was generated for CallResult[opt]   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(217,3) ]
+      remark #15305: vectorization support: vector length 8
+      remark #15309: vectorization support: normalized vectorization overhead 0.051
+      remark #15301: OpenMP SIMD LOOP WAS VECTORIZED
+      remark #15321: Compiler has chosen to target XMM/YMM vector. Try using -qopt-zmm-usage=high to override
+      remark #15448: unmasked aligned unit stride loads: 5 
+      remark #15449: unmasked aligned unit stride stores: 1 
+      remark #15467: unmasked aligned streaming stores: 1 
+      remark #15475: --- begin vector cost summary ---
+      remark #15476: scalar cost: 2625 
+      remark #15477: vector cost: 346.870 
+      remark #15478: estimated potential speedup: 7.260 
+      remark #15482: vectorized math library calls: 19 
+      remark #15486: divides: 19 
+      remark #15488: --- end vector cost summary ---
+
+      LOOP BEGIN at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(88,23) inlined into /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(217,21)
+         remark #25460: No loop optimizations reported
+      LOOP END
+   LOOP END
+
+   LOOP BEGIN at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(208,2)
+   <Remainder loop for vectorization>
+      remark #15388: vectorization support: reference OptionYears[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(211,13) ]
+      remark #15388: vectorization support: reference StockPrice[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(212,13) ]
+      remark #15388: vectorization support: reference OptionStrike[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(213,13) ]
+      remark #15388: vectorization support: reference CostofCarry[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(214,13) ]
+      remark #15388: vectorization support: reference Volatility[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(215,13) ]
+      remark #15388: vectorization support: reference CallResult[opt] has aligned access   [ /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(217,3) ]
+      remark #15305: vectorization support: vector length 8
+      remark #15309: vectorization support: normalized vectorization overhead 0.055
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+
+      LOOP BEGIN at /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(88,23) inlined into /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(217,21)
+         remark #25460: No loop optimizations reported
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(143,1):remark #34051: REGISTER ALLOCATION : [main] /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp:143
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   50[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm31 k0-k3]
+        
+    Routine temporaries
+        Total         :     871
+            Global    :     272
+            Local     :     599
+        Regenerable   :     155
+        Spilled       :      78
+        
+    Routine stack
+        Variables     :      60 bytes*
+            Reads     :       8 [2.00e+00 ~ 0.0%]
+            Writes    :       8 [2.50e+01 ~ 0.0%]
+        Spills        :    1744 bytes*
+            Reads     :     159 [2.88e+05 ~ 28.0%]
+            Writes    :     100 [5.83e+03 ~ 0.6%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: __sti__$E()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (__sti__$E()) [2/25=8.0%] <compiler generated>
+  -> EXTERN: /usr/include/c++/4.8.5/iostream:(74,25) __cxa_atexit(void (*)(void *), void *, void *)
+  -> EXTERN: /usr/include/c++/4.8.5/iostream:(74,25) std::ios_base::Init::Init(std::ios_base::Init *)
+
+
+    Report from: Code generation optimizations [cg]
+
+<compiler generated>:remark #34051: REGISTER ALLOCATION : [__sti__$E] (null):0
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   63[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm31 k0-k7]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    3[ rdx rsi rdi]
+        
+    Routine temporaries
+        Total         :      13
+            Global    :       7
+            Local     :       6
+        Regenerable   :       7
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: std::__check_facet<std::basic_ios<char, std::char_traits<char>>::__ctype_type>(const std::basic_ios<char, std::char_traits<char>>::__ctype_type *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::__check_facet<std::basic_ios<char, std::char_traits<char>>::__ctype_type>(const std::basic_ios<char, std::char_traits<char>>::__ctype_type *)) /usr/include/c++/4.8.5/bits/basic_ios.h(47,5)
+
+===========================================================================
+
+Begin optimization report for: std::ctype<char>::widen(const std::ctype<char> *, char) const
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::ctype<char>::widen(const std::ctype<char> *, char) const) /usr/include/c++/4.8.5/bits/locale_facets.h(866,7)
+
+===========================================================================
+
+Begin optimization report for: std::operator|(std::_Ios_Iostate, std::_Ios_Iostate)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::operator|(std::_Ios_Iostate, std::_Ios_Iostate)) /usr/include/c++/4.8.5/bits/ios_base.h(158,3)
+
+===========================================================================
+
+Begin optimization report for: std::char_traits<char>::length(const std::char_traits<char>::char_type *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::char_traits<char>::length(const std::char_traits<char>::char_type *)) /usr/include/c++/4.8.5/bits/char_traits.h(259,7)
+
+===========================================================================
+
+Begin optimization report for: std::setprecision(int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::setprecision(int)) /usr/include/c++/4.8.5/iomanip(193,3)
+
+===========================================================================
+
+Begin optimization report for: std::ios_base::precision(std::ios_base *, std::streamsize)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::ios_base::precision(std::ios_base *, std::streamsize)) /usr/include/c++/4.8.5/bits/ios_base.h(631,5)
+
+===========================================================================
+
+Begin optimization report for: std::fabs(float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::fabs(float)) /usr/include/c++/4.8.5/cmath(261,3)
+
+===========================================================================
+
+Begin optimization report for: second()
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (second()) /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(58,1)
+
+===========================================================================
+
+Begin optimization report for: RandFloat(float, float, unsigned int *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (RandFloat(float, float, unsigned int *)) /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(65,66)
+
+===========================================================================
+
+Begin optimization report for: cnd_opt(float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (cnd_opt(float)) /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(70,23)
+
+===========================================================================
+
+Begin optimization report for: n_opt(float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (n_opt(float)) /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(75,28)
+
+===========================================================================
+
+Begin optimization report for: european_call_opt(float, float, float, float, float, float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (european_call_opt(float, float, float, float, float, float)) /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(86,1)
+
+===========================================================================
+
+Begin optimization report for: baw_scalaropt(float, float, float, float, float, float)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (baw_scalaropt(float, float, float, float, float, float)) /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp(101,1)
+
+===========================================================================
+
+    Report from: Profile guided optimizations [pgo]
+
+
+
+Profile feedback used a statically estimated profile for the following routines:
+
+  File: <compiler generated>
+        __sti__$E()
+
+  File: /home/silvio/PerfEstimateFramework/src/optionprice/am_call.cpp
+        main()     [Line   143]
+
+
+  0 out of 2 routine(s) used training profile data for PGO feedback
+  0 out of 2 routine(s) were unable to use training profile data for PGO feedback
+  0 out of 2 routine(s) were unable to find training profile data for PGO feedback
+  2 out of 2 routine(s) used a static estimate profile for PGO feedback
+
+
+
